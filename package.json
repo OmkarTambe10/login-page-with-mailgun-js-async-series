@@ -1,0 +1,19 @@
+{
+  "name": "iortarepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^3.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app"
+  },
+  "author": "omkar tambe",
+  "license": "ISC"
+}

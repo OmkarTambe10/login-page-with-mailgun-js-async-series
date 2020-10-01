@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+        input[type=text], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+           margin-bottom: 16px;
+          resize: vertical;
+        }
+        
+        input[type=password], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+
+        button[type=submit] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        button[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title><%= title%></title>
+</head>
+<body>
+    <div class="container" style="width: 30%;">
+        <form id="userForm" autocomplete="off">
+        
+            <div class="">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" id="email" placeholder="Enter Username" name="email" required>
+            </div>
+            <div>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" id="password" name="password" required>
+            </div>
+
+            <div>
+                <button type="submit" >Login</button>
+            </div>
+            <div>
+                <p id="desc"></p>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $("#userForm").validate({
+            submitHandler : function(form){
+                try{
+                    var formdata = {
+                        email : $('#email').val(),
+                        password : $('#password').val()
+                    }
+                    $.ajax({
+                        url : "/route/user/signInUser",
+                        type : "PUT",
+                        data : JSON.stringify(formdata),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success : function(result){
+                            result = JSON.stringify(result);
+                            result = JSON.parse(result);
+                            console.log(result);
+                            $("#desc").text(result.message);
+                            alert("Success");
+                            // document.getElementById('userForm').reset();
+                            // showDataInTable();
+                        }
+                    })
+                }catch(e){
+                    console.log(e)
+                }
+            }
+        });
+    });
+</script>
+</html>
