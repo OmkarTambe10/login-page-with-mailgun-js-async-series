@@ -3,8 +3,8 @@ const signInDataModel = require("../models/signInDataModel.js");
 const async = require("async");
 
 const mailgun = require("mailgun-js");
-const DOMAIN = "sandboxf276552b8e814072a3325200877d107a.mailgun.org";
-const mg = mailgun({apiKey: "88c50ca6235e8ddfa59f17d5af5627fd-aff2d1b9-84ce9e7d", domain: DOMAIN});
+const DOMAIN = "www.yourDomain.com";
+const mg = mailgun({apiKey: "api-key-provided-by-mailgun", domain: DOMAIN});
 module.exports = {
     addData : function(req, res){
         try{
