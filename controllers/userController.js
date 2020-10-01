@@ -81,7 +81,7 @@ module.exports = {
                 },
                 sendMail : function(cb){
                     const data = {
-                        from: "Mailgun Sandbox <omkar18cool@gmail.com>",
+                        from: "User <regestered.email.com>",
                         to: formData.email,
                         subject: "Hello",
                         text: "Sign-in completed!"
